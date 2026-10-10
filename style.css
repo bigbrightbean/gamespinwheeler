@@ -1,0 +1,912 @@
+/* ===================================================== */
+/* BODY */
+/* ===================================================== */
+
+body{
+font-family:"Comic Sans MS",Arial;
+background:#e9f6ff;
+text-align:center;
+margin:0;
+padding:0;
+overflow-x:hidden;
+}
+
+
+/* ===================================================== */
+/* HEADER */
+/* ===================================================== */
+
+header{
+background:white;
+padding:6px 10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+}
+
+h1{
+font-size:2em;
+color:#222;
+text-shadow:1px 1px #ccc;
+margin:3px 0;
+}
+
+.button-row{
+margin-top:5px;
+}
+
+.button-row button{
+
+background:#3ecf5b;
+color:white;
+
+border:none;
+border-radius:15px;
+
+padding:12px 22px;
+
+font-weight:bold;
+font-size:1.2em;
+
+margin:5px;
+
+cursor:pointer;
+
+box-shadow:0 5px #2fa04a;
+
+transition:transform 0.15s;
+
+}
+
+.button-row button:hover{
+transform:scale(1.08);
+}
+
+
+/* ===================================================== */
+/* MAIN LAYOUT */
+/* ===================================================== */
+
+#game-container{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+margin:10px;
+gap:30px;
+}
+
+
+
+/* ===================================================== */
+/* ⭐⭐⭐⭐⭐ PHONICS ENGINE — COPY AND PASTE THIS PART ⭐⭐⭐⭐⭐ */
+/* ===================================================== */
+
+#left-panel{
+width:40%;
+text-align:center;
+}
+
+#image{
+width:90%;
+max-width:480px;
+border-radius:15px;
+margin-top:5px;
+transition:transform 0.3s ease;
+}
+
+#letters{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+margin:20px 0;
+}
+
+.letter-btn{
+
+aspect-ratio:1/1;
+flex:1 1 0;
+
+min-width:60px;
+max-width:130px;
+
+font-size:5rem;
+font-weight:bold;
+
+background:linear-gradient(145deg,#0a84ff,#0066cc);
+color:white;
+
+border-radius:25px;
+border:4px solid white;
+
+cursor:pointer;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+box-shadow:
+6px 6px 12px rgba(0,0,0,0.25),
+-4px -4px 10px rgba(255,255,255,0.6),
+inset -4px -4px 8px rgba(0,0,0,0.25),
+inset 4px 4px 8px rgba(255,255,255,0.7);
+
+transition:all 0.15s ease;
+
+animation:bounceVibrateGroup 0.8s infinite;
+
+}
+
+.letter-btn:active{
+transform:scale(0.92);
+box-shadow:
+inset 6px 6px 12px rgba(0,0,0,0.35),
+inset -4px -4px 10px rgba(255,255,255,0.6);
+}
+
+.letter-btn.selected{
+background:linear-gradient(145deg,#ffb347,#ff7f24);
+animation:none;
+}
+
+.letter-btn.blended{
+background:linear-gradient(145deg,#ffe066,#ffcc00);
+color:black;
+animation:blendBounce 0.6s 3;
+}
+
+@keyframes bounceVibrateGroup{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.05);}
+}
+
+@keyframes blendBounce{
+0%{transform:scale(1)}
+50%{transform:scale(1.18)}
+100%{transform:scale(1)}
+}
+
+#blendBtn{
+
+width:500px;
+
+font-size:2em;
+font-weight:bold;
+
+padding:20px 0;
+
+margin:10px auto;
+
+border-radius:25px;
+border:4px solid white;
+
+background:linear-gradient(145deg,#3ecf5b,#2fa04a);
+color:white;
+
+cursor:pointer;
+
+box-shadow:
+6px 6px 12px rgba(0,0,0,0.3),
+-4px -4px 10px rgba(255,255,255,0.7),
+inset -3px -3px 6px rgba(0,0,0,0.25),
+inset 3px 3px 6px rgba(255,255,255,0.8);
+
+transition:all 0.2s ease;
+
+}
+
+#blendBtn.ready{
+animation:blendPulse 1s infinite;
+}
+
+@keyframes blendPulse{
+
+0%{transform:scale(1)}
+
+50%{transform:scale(1.1)}
+
+100%{transform:scale(1)}
+
+}
+
+/* ===================================================== */
+/* ⭐⭐⭐⭐⭐ END PHONICS ENGINE — COPY AND PASTE THIS PART ⭐⭐⭐⭐⭐ */
+/* ===================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===================================================== */
+/* ⭐⭐⭐ GAME ENGINE – KIDS WHEEL OF FORTUNE */
+/* ===================================================== */
+
+#right-panel{
+width:60%;
+text-align:center;
+}
+
+.instructions{
+font-size:clamp(13px,1.5vw,1.3em);
+color:#333;
+background:white;
+border-radius:18px;
+padding:8px 18px;
+margin:4px auto 14px auto;
+width:fit-content;
+max-width:96%;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+box-shadow:0 4px 10px rgba(0,0,0,0.12);
+}
+
+
+/* ===================================================== */
+/* SCOREBOARD — TOTAL SCORE BOXES */
+/* ===================================================== */
+
+.scoreboard{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:16px;
+margin-bottom:18px;
+}
+
+.team{
+background:white;
+padding:10px 16px;
+border-radius:20px;
+border:6px solid transparent;
+transition:0.3s;
+display:flex;
+align-items:center;
+gap:14px;
+box-shadow:0 6px 14px rgba(0,0,0,0.15);
+}
+
+.team-emoji{
+font-size:64px;
+line-height:1;
+}
+
+.score-box{
+min-width:120px;
+height:96px;
+border-radius:16px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+color:white;
+box-shadow:inset 0 -6px 0 rgba(0,0,0,0.18);
+}
+
+.dog .score-box{ background:linear-gradient(160deg,#ff6b6b,#e63946); }
+.tiger .score-box{ background:linear-gradient(160deg,#4d9bff,#1f6fe0); }
+
+.score-label{
+font-size:15px;
+font-weight:bold;
+letter-spacing:2px;
+opacity:0.9;
+margin-bottom:-4px;
+}
+
+.score-num{
+font-size:62px;
+font-weight:900;
+line-height:1;
+text-shadow:0 3px 0 rgba(0,0,0,0.25);
+}
+
+.score-num.bump{
+animation:scoreBump 0.6s ease;
+}
+
+@keyframes scoreBump{
+0%{transform:scale(1);}
+35%{transform:scale(1.5);}
+65%{transform:scale(0.9);}
+100%{transform:scale(1);}
+}
+
+.dog.active{
+border-color:#ff3b3b;
+box-shadow:0 0 22px #ff3b3b;
+animation:teamPulse 1.3s infinite;
+}
+
+.tiger.active{
+border-color:#2f80ff;
+box-shadow:0 0 22px #2f80ff;
+animation:teamPulse 1.3s infinite;
+}
+
+@keyframes teamPulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.05);}
+100%{transform:scale(1);}
+}
+
+
+/* ===================================================== */
+/* 📺 LIVE BOX — big emoji / digit under the arrow */
+/* ===================================================== */
+
+.live-box{
+position:relative;
+width:120px;
+height:120px;
+border-radius:20px;
+padding:8px;
+box-sizing:border-box;
+flex:0 0 auto;
+/* ✨ golden yellow glitter frame */
+background:linear-gradient(135deg,#a86a00,#ffd23f,#fff6b0,#ffb703,#ffe066,#a86a00);
+background-size:300% 300%;
+animation:goldShift 2.4s linear infinite;
+box-shadow:0 0 0 3px #a86a00, 0 0 16px 4px rgba(255,215,0,0.85), 0 6px 14px rgba(0,0,0,0.2);
+}
+
+/* twinkling sparkles on the frame */
+.live-box::before,
+.live-box::after{
+content:"";
+position:absolute;
+inset:-4px;
+border-radius:22px;
+pointer-events:none;
+z-index:2;
+background:
+radial-gradient(circle at 12% 6%, #fff 0 2px, transparent 4px),
+radial-gradient(circle at 60% 3%, #fff 0 2.5px, transparent 5px),
+radial-gradient(circle at 96% 30%, #fff 0 2px, transparent 4px),
+radial-gradient(circle at 97% 78%, #fff 0 2.5px, transparent 5px),
+radial-gradient(circle at 40% 97%, #fff 0 2px, transparent 4px),
+radial-gradient(circle at 4% 62%, #fff 0 2.5px, transparent 5px);
+animation:glitterTwinkle 1.1s ease-in-out infinite;
+}
+
+.live-box::after{
+background:
+radial-gradient(circle at 35% 4%, #fff 0 2.5px, transparent 5px),
+radial-gradient(circle at 88% 5%, #fff 0 2px, transparent 4px),
+radial-gradient(circle at 96% 54%, #fff 0 2px, transparent 4px),
+radial-gradient(circle at 75% 96%, #fff 0 2.5px, transparent 5px),
+radial-gradient(circle at 10% 95%, #fff 0 2px, transparent 4px),
+radial-gradient(circle at 3% 28%, #fff 0 2px, transparent 4px);
+animation-delay:0.55s;
+}
+
+@keyframes goldShift{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+@keyframes glitterTwinkle{
+0%,100%{opacity:0.15; filter:drop-shadow(0 0 0 #fff);}
+50%{opacity:1; filter:drop-shadow(0 0 4px #fff7b0);}
+}
+
+.live-inner{
+width:100%;
+height:100%;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:900;
+line-height:1;
+overflow:hidden;
+transition:background 0.08s;
+}
+
+.live-inner.num{
+font-size:92px;
+font-family:'Arial Rounded MT Bold','Comic Sans MS',Arial,sans-serif;
+-webkit-text-stroke:3px rgba(40,30,60,0.85);
+paint-order:stroke fill;
+text-shadow:0 4px 0 rgba(0,0,0,0.25);
+}
+
+.live-inner.animal{
+font-size:86px;
+}
+
+
+/* ===================================================== */
+/* 🎨 THEME DROPDOWN (matches header buttons) */
+/* ===================================================== */
+
+#themeSelector{
+background:#3ecf5b;
+color:white;
+border:none;
+border-radius:15px;
+padding:12px 40px 12px 20px;
+font-family:inherit;
+font-weight:bold;
+font-size:1.2em;
+margin:5px;
+cursor:pointer;
+box-shadow:0 5px #2fa04a;
+appearance:none;
+-webkit-appearance:none;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='white'%3E%3Cpolygon points='0,0 18,0 9,10'/%3E%3C/svg%3E");
+background-repeat:no-repeat;
+background-position:right 12px center;
+transition:transform 0.15s;
+}
+
+#themeSelector:hover{ transform:scale(1.08); }
+#themeSelector:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
+#themeSelector option{ background:white; color:#333; }
+
+
+/* ===================================================== */
+/* 🛑 END GAME BUTTON */
+/* ===================================================== */
+
+#endGameBtn{
+width:84px;
+height:84px;
+margin-left:0;
+flex:0 0 auto;
+border-radius:18px;
+border:4px solid white;
+background:linear-gradient(145deg,#3ecf5b,#2fa04a);
+color:white;
+font-family:inherit;
+font-size:17px;
+font-weight:bold;
+line-height:1.15;
+cursor:pointer;
+box-shadow:
+6px 6px 12px rgba(0,0,0,0.3),
+inset -3px -3px 6px rgba(0,0,0,0.25),
+inset 3px 3px 6px rgba(255,255,255,0.8);
+transition:transform 0.15s;
+}
+
+#endGameBtn:hover{ transform:scale(1.08); }
+#endGameBtn:active{ transform:scale(0.92); }
+
+#endGameBtn:disabled{
+opacity:0.45;
+cursor:not-allowed;
+transform:none;
+}
+
+
+/* ===================================================== */
+/* 🎡 WHEEL CONTAINER + GOLD RIM */
+/* ===================================================== */
+
+.wheel-container{
+container-type:inline-size;
+--size:max(340px, min(600px, 92vw, calc(100vh - 360px)));
+/* phones: never wider than the screen */
+position:relative;
+width:var(--size);
+height:var(--size);
+margin:34px auto 20px auto;
+max-width:92vw;
+max-height:92vw;
+}
+
+/* the rim: purple outside, gold ring, sits behind the wheel */
+.wheel-frame{
+position:absolute;
+inset:0;
+border-radius:50%;
+background:
+radial-gradient(circle, transparent 60%, rgba(0,0,0,0.0) 60%),
+conic-gradient(#ffd23f,#ffb703,#ffe066,#ffb703,#ffd23f,#ffb703,#ffe066,#ffb703,#ffd23f);
+box-shadow:
+0 0 0 8px #1f4fd1,
+0 0 0 13px #ffffff,
+0 18px 38px rgba(0,0,0,0.35);
+}
+
+/* the spinning canvas sits inside the rim */
+#wheel{
+position:absolute;
+top:7%;
+left:7%;
+width:86%;
+height:86%;
+border-radius:50%;
+box-shadow:0 0 0 6px #1f4fd1, inset 0 0 20px rgba(0,0,0,0.3);
+will-change:transform;
+}
+
+
+/* red outline + golden magnify layer (covers whole wheel box) */
+#wheelOverlay{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+z-index:5;
+pointer-events:none;
+}
+
+/* 👇 press the SPIN button = whole wheel squashes down and bounces up */
+.wheel-container.pressed{
+animation:wheelPress 0.48s ease;
+}
+
+@keyframes wheelPress{
+0%{transform:scale(1);}
+30%{transform:scale(0.9) translateY(8px);}
+60%{transform:scale(1.05) translateY(-6px);}
+80%{transform:scale(0.98);}
+100%{transform:scale(1);}
+}
+
+/* 💥 shake when it lands */
+.wheel-container.shake{
+animation:wheelShake 0.7s ease;
+}
+
+@keyframes wheelShake{
+0%,100%{transform:translate(0,0) rotate(0);}
+10%{transform:translate(-10px,4px) rotate(-1.5deg);}
+20%{transform:translate(10px,-4px) rotate(1.5deg);}
+30%{transform:translate(-9px,-3px) rotate(-1deg);}
+40%{transform:translate(9px,3px) rotate(1deg);}
+55%{transform:translate(-6px,2px) rotate(-0.6deg);}
+70%{transform:translate(5px,-2px) rotate(0.5deg);}
+85%{transform:translate(-2px,1px);}
+}
+
+/* ⭐ star burst */
+.star-burst{
+position:absolute;
+top:24%;
+left:50%;
+font-size:clamp(40px,11cqw,76px);
+filter:drop-shadow(0 0 8px rgba(255,220,0,0.9));
+z-index:15;
+pointer-events:none;
+transform:translate(-50%,-50%) scale(0.2);
+opacity:0;
+animation:starBurst 1.1s ease-out forwards;
+}
+
+@keyframes starBurst{
+0%{transform:translate(-50%,-50%) scale(0.2) rotate(0); opacity:0;}
+15%{opacity:1;}
+70%{opacity:1;}
+100%{transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.3) rotate(240deg); opacity:0;}
+}
+
+
+/* ===================================================== */
+/* 💡 LIGHT BULBS AROUND THE RIM */
+/* ===================================================== */
+
+.bulb{
+position:absolute;
+width:4.2%;
+height:4.2%;
+border-radius:50%;
+transform:translate(-50%,-50%);
+background:#fff8d6;
+box-shadow:0 0 6px 2px #fff3a0, 0 0 14px 4px rgba(255,230,90,0.7);
+animation:bulbBlink 0.9s infinite steps(1);
+}
+
+.bulb.odd{ animation-delay:0.45s; }
+
+.wheel-container.fast .bulb{ animation-duration:0.28s; }
+.wheel-container.fast .bulb.odd{ animation-delay:0.14s; }
+
+@keyframes bulbBlink{
+0%{
+background:#fff8d6;
+box-shadow:0 0 6px 2px #fff3a0, 0 0 16px 5px rgba(255,230,90,0.8);
+}
+50%{
+background:#e0a800;
+box-shadow:0 0 2px 1px rgba(0,0,0,0.25);
+}
+}
+
+
+/* ===================================================== */
+/* 🔻 POINTER / FLAPPER */
+/* ===================================================== */
+
+.pointer{
+position:absolute;
+top:-5%;
+left:50%;
+width:11%;
+height:15%;
+margin-left:-5.5%;
+z-index:8;
+transform-origin:50% 18%;
+background:linear-gradient(180deg,#ff4d6d,#d90429);
+clip-path:polygon(0 0,100% 0,100% 38%,50% 100%,0 38%);
+filter:drop-shadow(0 4px 3px rgba(0,0,0,0.35));
+}
+
+/* white edge look */
+.pointer::before{
+content:"";
+position:absolute;
+inset:6% 9% 10% 9%;
+background:linear-gradient(180deg,#ff758f,#ef233c);
+clip-path:polygon(0 0,100% 0,100% 38%,50% 100%,0 38%);
+}
+
+.pointer-gem{
+position:absolute;
+top:12%;
+left:50%;
+width:44%;
+height:30%;
+transform:translateX(-50%);
+border-radius:50%;
+background:radial-gradient(circle at 35% 35%,#ffffff,#ffe066 45%,#ffb703);
+z-index:2;
+}
+
+.pointer.tick{
+animation:pointerTick 0.14s ease-out;
+}
+
+@keyframes pointerTick{
+0%{transform:rotate(0deg);}
+40%{transform:rotate(-16deg);}
+100%{transform:rotate(0deg);}
+}
+
+
+/* ===================================================== */
+/* 🟩 CENTER SPIN BUTTON */
+/* ===================================================== */
+
+.spin-btn{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:22%;
+height:22%;
+border-radius:50%;
+font-family:inherit;
+font-size:clamp(18px,4.4vw,30px);
+font-weight:900;
+background:radial-gradient(circle at 35% 30%,#ffb35c,#ff7b00);
+color:white;
+border:7px solid #ffd23f;
+box-shadow:0 0 0 5px #1f4fd1, 0 6px 14px rgba(0,0,0,0.35);
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:6;
+text-shadow:0 2px 0 rgba(0,0,0,0.25);
+}
+
+.spin-btn.muted{
+filter:grayscale(55%);
+opacity:0.8;
+cursor:not-allowed;
+animation:none;
+}
+
+.spin-btn.active{
+background:radial-gradient(circle at 35% 30%,#fff3a6,#ffd84d);
+color:#333;
+text-shadow:none;
+animation:spinPulse 1s infinite;
+}
+
+@keyframes spinPulse{
+0%{
+transform:translate(-50%,-50%) scale(1);
+box-shadow:0 0 0 5px #1f4fd1, 0 0 18px #ffd84d, 0 0 36px #ffe97a;
+}
+50%{
+transform:translate(-50%,-50%) scale(1.12);
+box-shadow:0 0 0 5px #1f4fd1, 0 0 28px #ffd84d, 0 0 60px #fff4a6;
+}
+100%{
+transform:translate(-50%,-50%) scale(1);
+box-shadow:0 0 0 5px #1f4fd1, 0 0 18px #ffd84d, 0 0 36px #ffe97a;
+}
+}
+
+
+/* ===================================================== */
+/* 🎉 RESULT POPUP (WHITE BOX OVER THE WHEEL) */
+/* ===================================================== */
+
+.result-box{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:76%;
+height:76%;
+background:white;
+border-radius:34px;
+border:10px solid var(--c,#ffca3a);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:20;
+box-shadow:0 25px 45px rgba(0,0,0,0.35);
+animation:resultBounce 0.8s ease;
+}
+
+@keyframes resultBounce{
+0%{transform:translate(-50%,-50%) scale(0);}
+40%{transform:translate(-50%,-50%) scale(1.15);}
+60%{transform:translate(-50%,-50%) scale(0.93);}
+80%{transform:translate(-50%,-50%) scale(1.05);}
+100%{transform:translate(-50%,-50%) scale(1);}
+}
+
+.result-big{
+font-size:clamp(90px,24vw,230px);
+font-weight:900;
+line-height:1;
+color:var(--c,#ff595e);
+text-shadow:0 6px 0 rgba(0,0,0,0.15);
+}
+
+.result-animal{
+font-size:clamp(80px,20vw,190px);
+line-height:1.05;
+}
+
+.result-title{
+font-size:clamp(22px,4.5vw,40px);
+font-weight:bold;
+color:#6a4c93;
+margin-top:4px;
+}
+
+.result-roll{
+font-size:clamp(50px,12vw,110px);
+font-weight:900;
+line-height:1;
+color:#ff924c;
+min-height:1em;
+}
+
+.result-roll.done{
+color:#8ac926;
+animation:scoreBump 0.6s ease;
+}
+
+.result-points{
+font-size:clamp(28px,6vw,54px);
+font-weight:bold;
+color:#333;
+margin-top:6px;
+}
+
+
+/* ===================================================== */
+/* CONFETTI */
+/* ===================================================== */
+
+.confetti{
+position:fixed;
+width:11px;
+height:11px;
+z-index:60;
+pointer-events:none;
+animation:confettiFall 1.6s linear forwards;
+}
+
+@keyframes confettiFall{
+0%{transform:translateY(0) rotate(0); opacity:1;}
+100%{transform:translateY(500px) rotate(720deg); opacity:0;}
+}
+
+
+/* ===================================================== */
+/* 🏆 WINNER POPUP */
+/* ===================================================== */
+
+.winner-popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:36px 70px;
+border-radius:28px;
+font-weight:bold;
+z-index:50;
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+animation:resultBounce 0.8s ease;
+}
+
+.winner-popup .win-emoji{
+font-size:150px;
+line-height:1.1;
+}
+
+.winner-popup .win-text{
+font-size:64px;
+color:#333;
+}
+
+.winner-popup .win-score{
+font-size:38px;
+color:#6a4c93;
+margin-top:8px;
+}
+
+.winner-popup.dog{ border:10px solid #ff3b3b; }
+.winner-popup.tiger{ border:10px solid #2f80ff; }
+.winner-popup.tie{ border:10px solid #8ac926; }
+
+
+/* ======================================================
+   TABLET / PHONE / IPAD SINGLE COLUMN LAYOUT
+   ====================================================== */
+
+@media (orientation: portrait), (max-width: 1024px) {
+
+  #game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #left-panel,
+  #right-panel {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+}
+
+@media (max-width: 1200px) {
+
+  #right-panel {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .scoreboard{ gap:8px; flex-wrap:wrap; }
+  #blendBtn{ width:90%; }
+  .letter-btn{ font-size:3rem; }
+  .team{ padding:5px 7px; gap:5px; border-width:4px; }
+  .team-emoji{ font-size:32px; }
+  .score-box{ min-width:60px; height:66px; }
+  .score-label{ font-size:11px; letter-spacing:1px; }
+  .score-num{ font-size:40px; }
+  .live-box{ width:80px; height:80px; padding:6px; }
+  .live-inner.num{ font-size:62px; }
+  .live-inner.animal{ font-size:58px; }
+  .instructions{ white-space:normal; }
+  #endGameBtn{ width:66px; height:66px; font-size:14px; margin-left:0; }
+  .winner-popup{ padding:24px 30px; }
+  .winner-popup .win-text{ font-size:38px; }
+  .winner-popup .win-emoji{ font-size:100px; }
+
+}

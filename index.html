@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spin The Wheel Game Menu</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header>
+    <h1>🎡 Spin The Wheel Menu</h1>
+    <p class="how">Tap one or more sounds, then press <b>▶ PLAY</b>. Tap again to unselect.</p>
+  </header>
+
+  <!-- Controlled R Words -->
+  <div class="banner red">🌈 Controlled R Words</div>
+  <div class="menu-container" data-group="controlled">
+    <button class="menu-btn" data-set="controlled_ar">AR</button>
+    <button class="menu-btn" data-set="controlled_er">ER</button>
+    <button class="menu-btn" data-set="controlled_ir">IR</button>
+    <button class="menu-btn" data-set="controlled_or">OR</button>
+    <button class="menu-btn" data-set="controlled_ur">UR</button>
+    <button class="menu-btn all-btn" data-all="controlled">ALL</button>
+  </div>
+
+  <!-- Long Vowels -->
+  <div class="banner blue">🌈 Long Vowels</div>
+  <div class="menu-container" data-group="longvowels">
+    <button class="menu-btn" data-set="longvowels_a">A</button>
+    <button class="menu-btn" data-set="longvowels_e">E</button>
+    <button class="menu-btn" data-set="longvowels_i">I</button>
+    <button class="menu-btn" data-set="longvowels_o">O</button>
+    <button class="menu-btn" data-set="longvowels_u">U</button>
+    <button class="menu-btn all-btn" data-all="longvowels">ALL</button>
+  </div>
+
+  <!-- Consonant Blends -->
+  <div class="banner red">🌈 Consonant Blends</div>
+  <div class="menu-container" data-group="blends">
+    <button class="menu-btn" data-set="consonantblend_l">L Blends</button>
+    <button class="menu-btn" data-set="consonantblend_r">R Blends</button>
+    <button class="menu-btn" data-set="consonantblend_s">S Blends</button>
+    <button class="menu-btn all-btn" data-all="blends">ALL</button>
+  </div>
+
+  <!-- Diagraphs -->
+  <div class="banner blue">🌈 Diagraphs</div>
+  <div class="menu-container" data-group="diagraphs">
+    <button class="menu-btn" data-set="diagraphs_ch">CH</button>
+    <button class="menu-btn" data-set="diagraphs_ng">NG</button>
+    <button class="menu-btn" data-set="diagraphs_sh">SH</button>
+    <button class="menu-btn" data-set="diagraphs_th">TH</button>
+    <button class="menu-btn all-btn" data-all="diagraphs">ALL</button>
+  </div>
+
+  <footer>
+    <p>© 2025 Cool Junior Phonics — Learn Phonics Through Play 🌟</p>
+  </footer>
+
+  <!-- ▶ PLAY BAR -->
+  <div id="playBar">
+    <span id="pickedText">Pick a sound to start</span>
+    <button id="clearBtn">Clear</button>
+    <button id="playBtn" disabled>▶ PLAY</button>
+  </div>
+
+<script>
+/* ===================================================== */
+/* 🎯 MULTI-PICK MENU                                     */
+/* ===================================================== */
+
+const setButtons = [...document.querySelectorAll(".menu-btn[data-set]:not(.empty)")]
+const allButtons = [...document.querySelectorAll(".all-btn")]
+const playBtn    = document.getElementById("playBtn")
+const clearBtn   = document.getElementById("clearBtn")
+const pickedText = document.getElementById("pickedText")
+
+function chosenSets(){
+  return setButtons.filter(b => b.classList.contains("selected")).map(b => b.dataset.set)
+}
+
+function refresh(){
+
+  const picked = setButtons.filter(b => b.classList.contains("selected"))
+
+  /* ALL lights up when every sound in its row is picked */
+  allButtons.forEach(all=>{
+    const row = setButtons.filter(b => b.closest(".menu-container").dataset.group === all.dataset.all)
+    all.classList.toggle("selected", row.length > 0 && row.every(b => b.classList.contains("selected")))
+  })
+
+  playBtn.disabled = picked.length === 0
+  pickedText.textContent = picked.length === 0
+    ? "Pick a sound to start"
+    : "Playing: " + picked.map(b => b.textContent.trim()).join(" + ")
+
+  /* remember the last choice on this computer */
+  try{ localStorage.setItem("spinSets", chosenSets().join(",")) }catch(e){}
+}
+
+/* tap a sound = pick / unpick */
+setButtons.forEach(b=>{
+  b.onclick = ()=>{
+    b.classList.toggle("selected")
+    refresh()
+  }
+})
+
+/* tap ALL = pick the whole row (tap again = unpick the row) */
+allButtons.forEach(all=>{
+  all.onclick = ()=>{
+    const row = setButtons.filter(b => b.closest(".menu-container").dataset.group === all.dataset.all)
+    const turnOn = !row.every(b => b.classList.contains("selected"))
+    row.forEach(b => b.classList.toggle("selected", turnOn))
+    refresh()
+  }
+})
+
+clearBtn.onclick = ()=>{
+  setButtons.forEach(b => b.classList.remove("selected"))
+  refresh()
+}
+
+playBtn.onclick = ()=>{
+  const sets = chosenSets()
+  if(sets.length === 0) return
+  window.location.href = "game.html?set=" + sets.join(",")
+}
+
+/* bring back the last choice */
+try{
+  const saved = (localStorage.getItem("spinSets") || "").split(",")
+  setButtons.forEach(b => { if(saved.includes(b.dataset.set)) b.classList.add("selected") })
+}catch(e){}
+
+refresh()
+</script>
+
+</body>
+</html>

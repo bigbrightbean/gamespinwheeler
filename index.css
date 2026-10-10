@@ -1,0 +1,192 @@
+body {
+  background: linear-gradient(#fff, #f5f9ff);
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 3em;
+  color: #333;
+  text-shadow: 2px 2px #ccc;
+  margin-top: 30px;
+}
+
+.banner {
+  width: 80%;
+  margin: 40px auto 20px auto;
+  border-radius: 25px;
+  padding: 15px 20px;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  box-shadow: 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.banner.yellow {
+  background: linear-gradient(90deg, #ffeb3b, #fdd835);
+  color: #333;
+}
+
+.banner.red {
+  background: linear-gradient(90deg, #f44336, #e53935);
+  color: white;
+}
+
+.banner.blue {
+  background: linear-gradient(90deg, #42a5f5, #1e88e5);
+  color: white;
+}
+
+.banner.small {
+  font-size: 1.2em;
+  padding: 8px 0;
+}
+
+/* === Bright Green Letter Buttons for Racing Game === */
+.menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.menu-btn {
+  background-color: #3ecf5b;
+  color: white;
+  font-size: 2.5em;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  padding: 25px 60px;
+  cursor: pointer;
+  box-shadow: 0 8px #2fa04a;
+  transition: all 0.2s ease;
+}
+
+.menu-btn:hover {
+  background-color: #2fa04a;
+  transform: translateY(4px);
+}
+
+
+footer {
+  font-size: 1em;
+  color: #777;
+  margin-bottom: 40px;
+}
+
+/* ===================================================== */
+/* 🎯 MULTI-PICK MENU                                     */
+/* ===================================================== */
+
+.how {
+  font-size: 1.3em;
+  color: #555;
+  margin: -10px 0 0 0;
+}
+
+/* 🟠 picked */
+.menu-btn.selected {
+  background-color: #ff8c1a;
+  box-shadow: 0 8px #c76500, 0 0 0 6px #ffd84d;
+  transform: translateY(-2px) scale(1.05);
+}
+
+.menu-btn.selected:hover,
+.menu-btn.all-btn.selected:hover {
+  background-color: #e67a00;
+}
+
+.menu-btn.selected::before {
+  content: "✔ ";
+}
+
+/* ⭐ ALL shortcut */
+.menu-btn.all-btn {
+  background-color: #9b5de5;
+  box-shadow: 0 8px #6a3fa8;
+}
+
+.menu-btn.all-btn:hover {
+  background-color: #6a3fa8;
+}
+
+.menu-btn.all-btn.selected {
+  background-color: #ff8c1a;
+  box-shadow: 0 8px #c76500, 0 0 0 6px #ffd84d;
+}
+
+/* ⛔ no words yet */
+.menu-btn.empty {
+  background-color: #c8c8c8;
+  box-shadow: 0 8px #a5a5a5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.menu-btn.empty:hover {
+  background-color: #c8c8c8;
+  transform: none;
+}
+
+/* ▶ PLAY BAR (stays at the bottom of the screen) */
+#playBar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  background: white;
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.18);
+}
+
+#pickedText {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #333;
+}
+
+#playBtn,
+#clearBtn {
+  font-family: inherit;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#playBtn {
+  background-color: #3ecf5b;
+  color: white;
+  font-size: 2em;
+  padding: 14px 50px;
+  box-shadow: 0 7px #2fa04a;
+}
+
+#playBtn:hover:not(:disabled) {
+  background-color: #2fa04a;
+  transform: translateY(3px);
+}
+
+#playBtn:disabled {
+  background-color: #c8c8c8;
+  box-shadow: 0 7px #a5a5a5;
+  cursor: not-allowed;
+}
+
+#clearBtn {
+  background-color: #eee;
+  color: #555;
+  font-size: 1.2em;
+  padding: 12px 26px;
+  box-shadow: 0 5px #ccc;
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Spin The Wheel Game</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ===================================================== -->
+<!-- ⭐⭐⭐⭐⭐ HEADER SYSTEM ⭐⭐⭐⭐⭐ -->
+<!-- ===================================================== -->
+
+<header>
+
+<h1>🎡 Spin The Wheel Game</h1>
+
+<div class="button-row">
+
+<!-- shuffle word -->
+<button id="shuffleBtn">Shuffle</button>
+
+<!-- previous word -->
+<button id="prevWordBtn">← Previous</button>
+
+<!-- next word -->
+<button id="nextWordBtn">Next →</button>
+
+<!-- back to menu -->
+<button id="mainMenuBtn">Back to Main Menu</button>
+
+<!-- 🎨 WHEEL EMOJI THEME -->
+<select id="themeSelector" title="Wheel emoji theme">
+<option value="animals">🐵 Animals</option>
+<option value="candy">🍭 Candy</option>
+<option value="food">🍕 Food</option>
+<option value="smileys" selected>😀 Smileys</option>
+</select>
+
+</div>
+
+</header>
+
+<!-- ===================================================== -->
+<!-- ⭐⭐⭐⭐⭐ END HEADER SYSTEM ⭐⭐⭐⭐⭐ -->
+<!-- ===================================================== -->
+
+
+
+<div id="game-container">
+
+
+<!-- ===================================================== -->
+<!-- ⭐⭐⭐⭐⭐ PHONICS ENGINE — COPY AND PASTE THIS PART ⭐⭐⭐⭐⭐ -->
+<!-- ===================================================== -->
+
+<div id="left-panel">
+
+<!-- IMAGE (placeholder system controlled by JS) -->
+<img id="image" src="" alt="word image">
+
+<!-- LETTER BUTTONS -->
+<div id="letters"></div>
+
+<!-- BLEND BUTTON -->
+<button id="blendBtn" disabled>Blend</button>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- ⭐⭐⭐⭐⭐ END PHONICS ENGINE — COPY AND PASTE THIS PART ⭐⭐⭐⭐⭐ -->
+<!-- ===================================================== -->
+
+
+
+<!-- ===================================================== -->
+<!-- GAME PANEL -->
+<!-- ===================================================== -->
+
+<div id="right-panel">
+
+
+<div class="instructions" id="instructions">🎡 Spin! Numbers = points · <span id="themeWord">Smileys</span> = 🎁 mystery bonus · Most points wins!</div>
+
+
+<!-- ===================================================== -->
+<!-- SCOREBOARD — TOTAL SCORE -->
+<!-- ===================================================== -->
+
+<div class="scoreboard">
+
+<!-- DOG TEAM -->
+<div id="dogTeam" class="team dog active">
+<span class="team-emoji">🐶</span>
+<div class="score-box">
+<span class="score-label">TOTAL</span>
+<span class="score-num" id="dogScore">0</span>
+</div>
+</div>
+
+<!-- 📺 LIVE BOX — shows the slice under the arrow -->
+<div class="live-box" id="liveBox"><div class="live-inner" id="liveInner"></div></div>
+
+<!-- TIGER TEAM -->
+<div id="tigerTeam" class="team tiger">
+<span class="team-emoji">🐯</span>
+<div class="score-box">
+<span class="score-label">TOTAL</span>
+<span class="score-num" id="tigerScore">0</span>
+</div>
+</div>
+
+<!-- 🛑 MODERATOR END GAME BUTTON -->
+<button id="endGameBtn" title="End the game now">END<br>GAME</button>
+
+</div>
+
+
+
+<!-- ===================================================== -->
+<!-- 🎡 WHEEL OF FORTUNE (KIDS) -->
+<!-- ===================================================== -->
+
+<div class="wheel-container" id="wheelContainer">
+
+<!-- gold rim with blinking light bulbs (bulbs added by JS) -->
+<div class="wheel-frame" id="wheelFrame"></div>
+
+<!-- the spinning wheel -->
+<canvas id="wheel" width="1040" height="1040"></canvas>
+
+<!-- yellow glitter outline / golden magnify layer (does not spin) -->
+<canvas id="wheelOverlay" width="1200" height="1200"></canvas>
+
+<!-- pointer / flapper at the top -->
+<div class="pointer" id="pointer"><div class="pointer-gem"></div></div>
+
+<!-- SPIN button in the middle -->
+<button id="spinBtn" class="spin-btn muted" disabled>SPIN</button>
+
+</div>
+
+
+</div>
+<!-- END RIGHT PANEL -->
+
+</div>
+<!-- END GAME CONTAINER -->
+
+
+
+<!-- ===================================================== -->
+<!-- ⭐ GAME SCRIPT -->
+<!-- ===================================================== -->
+
+<script src="game.js"></script>
+
+</body>
+
+</html>
